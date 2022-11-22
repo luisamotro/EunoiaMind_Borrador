@@ -1,6 +1,7 @@
 package cl.generation.web.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +15,21 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity 
-@Table(name="subemociones")
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Table(name = "subemociones")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class SubEmocion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,64 +39,26 @@ public class SubEmocion {
 	private String nombreSubE;
 	@NotNull
 	private String descripcion;
-	
-	/*@Transient
-	private int emocionId;*/
-	
+
+	/*
+	 * @Transient private int emocionId;
+	 */
+
 	@Column(updatable = false)
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
-	
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 
-	public SubEmocion() {
-		super();
-	}
-
-	public SubEmocion(Long id, @NotNull String nombreSubE, @NotNull String descripcion) {
-		super();
-		this.id = id;
-		this.nombreSubE = nombreSubE;
-		this.descripcion = descripcion;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombreSubE() {
-		return nombreSubE;
-	}
-
-	public void setNombreSubE(String nombreSubE) {
-		this.nombreSubE = nombreSubE;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	
 	@PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-	
-	@PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
-	
-	
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
 
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = new Date();
+	}
 
 }
