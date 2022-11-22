@@ -47,47 +47,10 @@ public class Respuesta {
 	@JoinColumn(name ="emocion_id")
 	private Emocion emocion;
 	
-
 	@NotNull
 	private String respuesta;
 	@NotNull
 	private String texto;
-
-	@Column(updatable = false)
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date createdAt;
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date updatedAt;
-
-	public Respuesta() {
-		super();
-	}
-
-	public Respuesta(Long id, @NotNull String respuesta, @NotNull String texto, Date createdAt, Date updatedAt) {
-		super();
-		this.id = id;
-		this.respuesta = respuesta;
-		this.texto = texto;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getRespuesta() {
-		return respuesta;
-	}
-
-	/*
-	 * @Transient private int usuarioId;
-	 */
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
