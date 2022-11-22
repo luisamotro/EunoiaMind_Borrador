@@ -5,12 +5,9 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -38,15 +35,6 @@ public class Respuesta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-
-	@ManyToOne (fetch = FetchType.EAGER)
-	@JoinColumn(name ="usuario_id")
-	private Usuario usuario;
-	
-	@ManyToOne (fetch = FetchType.EAGER)
-	@JoinColumn(name ="emocion_id")
-	private Emocion emocion;
-	
 	@NotNull
 	private String respuesta;
 	@NotNull
