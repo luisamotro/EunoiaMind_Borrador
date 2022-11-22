@@ -40,10 +40,6 @@ public class Respuesta {
 	@NotNull
 	private String texto;
 
-	/*
-	 * @Transient private int usuarioId;
-	 */
-
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
