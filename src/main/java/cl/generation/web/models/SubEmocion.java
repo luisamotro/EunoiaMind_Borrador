@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,14 +34,11 @@ public class SubEmocion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	
 	@NotNull
 	private String nombreSubE;
 	@NotNull
 	private String descripcion;
-
-	/*
-	 * @Transient private int emocionId;
-	 */
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -60,5 +56,7 @@ public class SubEmocion {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
+
+	
 
 }
