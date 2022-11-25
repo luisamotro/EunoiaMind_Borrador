@@ -16,8 +16,8 @@ public class SubEmocionApiRestController {
 	@Autowired
 	private SubEmocionServiceImpl subEmocionServiceImpl;
 
-	// htps:localhost:9085/guardar/subemociones
-	@RequestMapping("/guardar/subemociones")
+	// htps:localhost:9085/guardar/subemocion
+	@RequestMapping("/guardar/subemocion")
 	public SubEmocion guardarSubEmocion(@RequestBody SubEmocion subemocion) {
 		/*
 		 * { "nombreSubE":"chill", 
@@ -26,23 +26,29 @@ public class SubEmocionApiRestController {
 		 */
 		return subEmocionServiceImpl.guardarSubEmocion(subemocion);
 	}
-
-	@RequestMapping("/eliminar/subEmocion")
+	
+	// htps:localhost:9085/eliminar/subemocion
+	@RequestMapping("/eliminar/subemocion")
 	public String eliminarSubEmocion(@RequestParam(value = "id", required = false) Long id) {
 		String respuesta = subEmocionServiceImpl.eliminarSubEmocion(id);
-		return "";
+		return respuesta;
 	}
 
-	// http://localhost:9085/actualizar/subEmocion
-	@RequestMapping("/actualizar/subEmocion")
+	// http://localhost:9085/actualizar/subemocion
+	@RequestMapping("/actualizar/subemocion")
 	public String actualizarSubEmocion(@RequestBody SubEmocion subEmocion) {
 		return subEmocionServiceImpl.actualizarSubEmocion(subEmocion); 
 	}
 	
 
-	@RequestMapping("/obtener/subEmocion")
+	@RequestMapping("/obtener/subemocion")
 	public String obtenerSubEmocion (@RequestParam(value = "id", required = true ) Long id) {
 		return subEmocionServiceImpl.obtenerSubEmocion(id);
+	}
+	
+	@RequestMapping("/obtener/DesSubEmocion")
+	public String obtenerDesSubEmocion (@RequestParam(value = "id", required = true ) Long id) {
+		return subEmocionServiceImpl.obtenerDesSubEmocion(id);
 	}
 	
 

@@ -9,5 +9,6 @@ public interface SubEmocionService {
 	public String eliminarSubEmocion(Long id);
 	public String actualizarSubEmocion(SubEmocion subEmocion);
 	public String obtenerSubEmocion(Long id);
+	public String obtenerDesSubEmocion (Long id);
 
 }

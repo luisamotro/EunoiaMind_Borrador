@@ -2,6 +2,8 @@ package cl.generation.web.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import cl.generation.web.models.Emocion;
 import cl.generation.web.models.SubEmocion;
 import cl.generation.web.repositories.SubEmocionRepository;
 
@@ -45,6 +47,23 @@ public class SubEmocionServiceImpl implements SubEmocionService {
 
 	@Override
 	public String obtenerSubEmocion(Long id) {
+		Boolean existe = subemocionRepository.existsById(id);
+		if (existe) {
+			SubEmocion subEmocion = subemocionRepository.findById(id).get();
+			return subEmocion.getNombreSubE();
+			
+		}
+		return null;
+	}
+	
+	@Override
+	public String obtenerDesSubEmocion(Long id) {
+		Boolean existe = subemocionRepository.existsById(id);
+		if (existe) {
+			SubEmocion subEmocion = subemocionRepository.findById(id).get();
+			return subEmocion.getDescripcion();
+			
+		}
 		return null;
 	}
 	
