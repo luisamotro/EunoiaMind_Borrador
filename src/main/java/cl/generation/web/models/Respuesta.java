@@ -37,9 +37,6 @@ public class Respuesta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	//tipo de emocion
-	@NotNull
-	private String respuesta;
 	//"desahogo de la persona"
 	@NotNull
 	private String texto;
@@ -51,6 +48,7 @@ public class Respuesta {
 	private Usuario usuario;
 	
 	// las emociones pueden tener solo 1 usuario - por eso una variable solamente
+	// "respuesta"
 	@JsonIgnore
 	@ManyToOne (fetch = FetchType.EAGER)
 	@JoinColumn(name ="emocion_id")
