@@ -6,27 +6,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cl.generation.web.models.Emocion;
 import cl.generation.web.models.Respuesta;
+import cl.generation.web.models.Usuario;
+import cl.generation.web.services.EmocionServiceImpl;
 import cl.generation.web.services.RespuestaServiceImpl;
+import cl.generation.web.services.UsuarioServiceImpl;
 
 @RestController
 public class RespuestaApiRestController {
 
 	@Autowired
 	private RespuestaServiceImpl respuestaServiceImpl;
+	@Autowired
+	private UsuarioServiceImpl userServiceImpl;
+	@Autowired
+	private EmocionServiceImpl emocionServiceImpl;
 	
-	
-	// localhost:9085/guardar/respuesta LISTO
+	// localhost:9085/guardar/respuesta OK
 	
 	@RequestMapping("/guardar/respuesta")
-	public Respuesta guardarRespuesta(@RequestBody Respuesta respuesta) {
-		return	respuestaServiceImpl.guardarRespuesta (respuesta); 		
+	public Respuesta guardarRespuesta(@RequestBody Respuesta respuesta, // lee el cuerpo de la consulta "json"
+		@RequestParam (value="usuario_id", required = false)Long usuario_id, // lee el parametro en url
+		@RequestParam (value="emocion_id", required = false)Long emocion_id){ //lee el parametro en url
+		Usuario usuario = userServiceImpl.obtenerUsuario(usuario_id); // obtiene el "usuario" a traves del id, y lo asigna a nueva variable
+		Emocion emocion = emocionServiceImpl.obtenerEmocion(emocion_id); // obtiene la "emocion" a traves del id, y lo asigna a nueva variable
+		respuesta.setUsuario(usuario); // setea el usuario encontrado a la respuesta
+		respuesta.setEmocion(emocion); // setea la emocion encontrada a la respuesta 
+		return	respuestaServiceImpl.guardarRespuesta (respuesta); 	// guarda la respuesta.
 	}
 	
 	// localhost:9085/modificar/respuesta LISTO
 	
 	@RequestMapping("/modificar/respuesta")
-	public String modificarRespuesta(@RequestBody Respuesta respuesta) {
+	public String modificarRespuesta(@RequestBody Respuesta respuesta){
 		if (respuesta.getId() != null) {
 			String mensaje = respuestaServiceImpl.modificarRespuesta(respuesta);
 			return mensaje;
