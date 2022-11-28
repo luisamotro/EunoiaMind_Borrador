@@ -61,12 +61,6 @@ public class Usuario {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 
-	
-	
-	
-	
-	
-	
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
