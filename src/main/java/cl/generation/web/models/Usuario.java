@@ -3,11 +3,14 @@ package cl.generation.web.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -44,6 +47,12 @@ public class Usuario {
 	private String contraseña;
 	@Transient
 	private String contraseña2;
+	
+	// 1 usuario puede estar en muchas respuestas - por eso una lista de respuestas
+	@NotNull
+	@JsonIgnore
+	@OneToMany(mappedBy="usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Respuesta> respuestas;
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -52,6 +61,12 @@ public class Usuario {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 
+	
+	
+	
+	
+	
+	
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
