@@ -49,7 +49,7 @@ public class Usuario {
 	private String contraseña2;
 	
 	// 1 usuario puede estar en muchas respuestas - por eso una lista de respuestas
-	@NotNull
+
 	@JsonIgnore
 	@OneToMany(mappedBy="usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Respuesta> respuestas;
