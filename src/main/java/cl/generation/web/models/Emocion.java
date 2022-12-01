@@ -45,5 +45,8 @@ public class Emocion {
 	@JsonIgnore
 	@OneToMany(mappedBy="emocion",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Respuesta> respuestas;
+	
+	@OneToMany(mappedBy = "emocion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<SubEmocion> subemociones;
 
 }
