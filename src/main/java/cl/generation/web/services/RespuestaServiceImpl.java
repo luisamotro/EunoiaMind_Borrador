@@ -41,7 +41,7 @@ public class RespuestaServiceImpl implements RespuestaService{
 		Boolean existe = respuestaRepository.existsById(id);
 		if(existe) { // siesque existe.
 			Respuesta respuesta = respuestaRepository.findById(id).get(); // encuentra la respuesta con ese ID.
-				return respuesta.getRespuesta(); // retorna la respuesta.
+				return respuesta.getEmocion().getNombreEmocion(); // retorna la respuesta.
 			}
 		return null;
 	}

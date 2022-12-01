@@ -42,7 +42,6 @@ public class Emocion {
 	private int tipo;
 	
 	// 1 emocion puede estar en muchas respuestas - por eso una lista de respuestas
-	@NotNull
 	@JsonIgnore
 	@OneToMany(mappedBy="emocion",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Respuesta> respuestas;

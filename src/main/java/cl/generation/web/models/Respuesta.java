@@ -42,6 +42,7 @@ public class Respuesta {
 	private String texto;
 	
 	// las respuestas pueden tener solo 1 usuario - por eso una variable solamente
+	
 	@JsonIgnore
 	@ManyToOne (fetch = FetchType.EAGER)
 	@JoinColumn(name ="usuario_id")
@@ -49,6 +50,7 @@ public class Respuesta {
 	
 	// las emociones pueden tener solo 1 usuario - por eso una variable solamente
 	// "respuesta"
+	
 	@JsonIgnore
 	@ManyToOne (fetch = FetchType.EAGER)
 	@JoinColumn(name ="emocion_id")
