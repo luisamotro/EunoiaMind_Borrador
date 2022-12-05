@@ -1,5 +1,7 @@
 package cl.generation.web.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import cl.generation.web.models.Respuesta;
@@ -44,6 +46,10 @@ public class RespuestaServiceImpl implements RespuestaService{
 				return respuesta.getEmocion().getNombreEmocion(); // retorna la respuesta.
 			}
 		return null;
+	}
+
+	public List<Respuesta> obtenerListaRespuestas() {
+		return respuestaRepository.findAll();
 	}
 	
 		

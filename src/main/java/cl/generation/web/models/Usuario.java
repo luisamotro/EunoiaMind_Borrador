@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,12 +28,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "usuarios")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
+@Table(name = "usuarios")
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,15 +49,18 @@ public class Usuario {
 	private String contraseña2;
 	
 	// 1 usuario puede estar en muchas respuestas - por eso una lista de respuestas
-
-	@JsonIgnore
 	@OneToMany(mappedBy="usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Respuesta> respuestas;
+	
+	@OneToMany(mappedBy="usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<SubEmocion> subemociones;
 
+	// fecha de creacion Usuario
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
 
+	// fecha de modificacion datos de Usuario
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 
