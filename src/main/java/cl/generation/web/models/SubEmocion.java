@@ -1,7 +1,7 @@
 package cl.generation.web.models;
 
 import java.util.Date;
-import java.util.List;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,33 +27,44 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "subemociones")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
+@Table(name = "subemociones")
 public class SubEmocion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	// nombre de la subemocione
+	@NotNull
+	private String nombreSubEmocion;
+	// descripcion de la subemocion
+	@NotNull
+	private String descripcionSubEmocion;
+	// clase de emocion de la subemocion
 	
-	@NotNull
-	private String nombreSubE;
-	@NotNull
-	private String descripcion;
-
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "emocion_id")
+	private Emocion emocion;
+	
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+	
+	// fecha creacion de la subemocion
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
 
+	// fecha de modificacion de subemocion
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "emocion_id")
-	private Emocion emocion;
 
 	@PrePersist
 	protected void onCreate() {

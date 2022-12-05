@@ -31,13 +31,17 @@ public class Emocion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
+	//nombre de la emocion
 	@NotNull
 	private String nombreEmocion;
+	// descripcion de la emocion
 	@NotNull
 	private String descripcion;
+	// pregunta relacionada con la emocion
 	@NotNull
 	private String pregunta;
+	//rango de la pregunta para el promedio
 	@NotNull
 	private int tipo;
 	
@@ -46,6 +50,7 @@ public class Emocion {
 	@OneToMany(mappedBy="emocion",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Respuesta> respuestas;
 	
+	// 1 emocion puede estar en muchas subemociones - por eso una lista de subemociones
 	@OneToMany(mappedBy = "emocion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<SubEmocion> subemociones;
 

@@ -26,40 +26,39 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "respuestas")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
+@Table(name = "respuestas")
 public class Respuesta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	//"desahogo de la persona"
+	//El "porque" de la respuesta, o "desahogo de la persona"
 	@NotNull
 	private String texto;
 	
 	// las respuestas pueden tener solo 1 usuario - por eso una variable solamente
-	
 	@JsonIgnore
 	@ManyToOne (fetch = FetchType.EAGER)
 	@JoinColumn(name ="usuario_id")
 	private Usuario usuario;
 	
-	// las emociones pueden tener solo 1 usuario - por eso una variable solamente
-	// "respuesta"
-	
-	@JsonIgnore
+	// esta es la "respuesta" del usuario
+	// las emociones pueden tener solo 1 usuario - por eso una variable solamente 
 	@ManyToOne (fetch = FetchType.EAGER)
 	@JoinColumn(name ="emocion_id")
 	private Emocion emocion;
-
+	
+	// fecha de la respuesta
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
-
+	
+	// fecha de modificacion respuesta
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 
